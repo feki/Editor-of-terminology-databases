@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+  
+  <database>
+  	<name>tedi</name>
+  	<url_base>https://deb.fi.muni.cz:8010/tedi</url_base>
+  	<url_base_s>https://deb.fi.muni.cz:8010/</url_base_s>
+  </database>
+  
+  <content>
+    
+    <input label=""><!-- prazdny label pre skupinu checkboxov -->
+      <checkboxs>
+        <checkbox label="předfinální" name="predfinal"/>
+        <checkbox label="finální" name="final"/>
+      </checkboxs>
+    </input>
+    
+    <input label="obor">
+      <select name="domain" multiple="true">
+        <options>
+          <option value="kres" label="kresba-grafika"/>
+          <option value="grdes" label="grafický design"/>
+          <option value="papir" label="papír a kniha"/>
+          <option value="malba" label="malba"/>
+          <option value="teldes" label="tělový design"/>
+          <option value="socha" label="socha"/>
+          <option value="vmp" label="vmp"/>
+          <option value="prodes" label="produktový design"/>
+          <option value="ism" label="umělecké směry, žánry, -ismy"/>
+          <option value="sber" label="sběrný soubor (estetitka, teorie umění)"/>
+        </options>
+      </select>
+    </input>
+    
+    <input label="heslo">
+      <text>
+        <textFields>
+          <textField label="česky" name="word_cz"/>
+          <textField label="anglicky" name="word_en"/>
+          <textField label="německy" name="word_de"/>
+          <textField label="francouzsky" name="word_fr"/>
+        </textFields>
+      </text>
+    </input>
+    
+    <input label="varianty">
+      <text>
+        <textField name="var" multiple="true"/>
+      </text>
+    </input>
+    
+    <input label="styl. přiznak">
+      <select name="styl" multiple="false">
+        <options>
+          <option value="prof" label="odborný termín"/>
+          <option value="knizni" label="standard, knižní"/>
+          <option value="slang" label="slang"/>
+          <option value="zast" label="zastaralé"/>
+          <option value="spor" label="sporné"/>
+        </options>
+      </select>
+    </input>
+    
+    <input label="definice">
+      <textarea name="def"/>
+    </input>
+    
+    <input label="příklady">
+      <text>
+        <textField name="example" multiple="true"/>
+      </text>
+    </input>
+    
+    <input label="nadpojem">
+      <text>
+        <textField name="hypernym" multiple="true"/>
+      </text>
+    </input>
+    
+    <input label="podpojem">
+      <text>
+        <textField name="hyponym" multiple="true"/>
+      </text>
+    </input>
+    
+    <input label="soubory">
+      <file multiple="true"/>
+    </input>
+    
+    <input label="morfologie">
+      <morfology name="morf" morffor="word_cz"/>
+    </input>
+    
+  </content>
+  
+</configuration>

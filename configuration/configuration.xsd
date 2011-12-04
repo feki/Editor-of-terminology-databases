@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  XML schéma popisujúca obsah konfiguračných XML súborov pre editory 
+  terminologických databáz.
+  -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  
+  <!--
+    Koreňový XML element <configuration> obsahuje informácie o databáze, 
+    v <database> elemente, a o obsahu editora, v <content> elemente.
+    Koreňový element má len tieto dva elementy.
+    -->
+  <xs:element name="configuration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="database" type="databaseType"/>
+        <xs:element name="content" type="contentType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <!--
+    databaseType je typ pre element <database>. Obsahuje <name> element s názvom 
+    databázi, <url_base> element s url databáze a <url_base_s> s url servera.
+    (<url_base_s> pravdepodobne zbytočná informácia o url servera, keďže ten je 
+    pravdepodobne stále rovnaký)
+    -->
+  <xs:complexType name="databaseType">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="url_base" type="xs:string"/>
+      <xs:element name="url_base_s" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <!--
+    contentType typ pre <content> element. <content> element obsahuje jeden 
+    alebo viac <input> elementov, ktoré určujú vstupné vstupy pre databázu 
+    a výsledné XML. Na ich poradí záleží. V poradí v akom sú popísané 
+    v konfiguračnom XML budú zobrazované v užívateľskom rozhraní editora 
+    a zároveň budu v tom istom poradi zapisované do výsledného XML.
+    -->
+  <xs:complexType name="contentType">
+    <xs:sequence>
+      <xs:element name="input" type="inputType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <!--
+    inputType typ pre <input> element. Každý <input> element obsahuje informácie 
+    o jednom type vstupu pre editor a o jeho popise(<label>).
+    -->
+  <xs:complexType name="inputType">
+    <xs:sequence>
+      <xs:element name="label" type="xs:string"/>
+      <xs:choice>
+        <xs:element name="select" type="selectType"/>
+        <xs:element name="text" type="textType"/>
+        <xs:element name="textareas" type="textareasType"/>
+        <xs:element name="checkboxs" type="checkboxsType"/>
+        <xs:element name="file" type="fileType"/>
+        <xs:element name="morfology" type="morfologyType"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <!--
+    selectType typ pre <select> vstup. Je asociovaný s HTML <select> tagom, 
+    jeho obsahom v podobe <option> tagov.
+    -->
+  <xs:complexType name="selectType">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="options">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="option">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="label" type="xs:string"/>
+                  <xs:element name="value" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="multiple" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <!--
+    textType typ pre <text> element. Obsahuje jeden z dvojice <textField>, 
+    <textFields> elementov. <textField> je asociovaný s HTML <input type="text"> 
+    elementom. Môže byť iba jeden alebo ich može byť viac s tým že sú dynamicky 
+    pridávané pomocou javascriptu. <textFields> obsahuje tak isto <textField> 
+    elementy asociované s HTML <input type="text"> elementom s tým rozdielom, že 
+    nemôžu byť rozširované.
+    Poznamka: teoriticky by mohli byť ale asi bz to bolo zbytočné
+    -->
+  <xs:complexType name="textType">
+    <xs:choice>
+      <xs:element name="textFields" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="textField" minOccurs="1" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="label" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                  <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="textField" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="multiple" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+  
+  <!--
+    textareasType typ pre <textareas>. Typ pre viacriadkové vstupy. 
+    Je asociovaný s HTML <textarea> elementom.
+    -->
+  <xs:complexType name="textareasType">
+    
+  </xs:complexType>
+  
+  <!--
+    checkboxsType typ <checkboxs> elementu. Obsahuje <checkbox> elementy 
+    asociované s HTML <input type="checkbox" value="true">. Slúži pre generáciu 
+    jedneho alebo viacerých elementov. 
+    Poynamka: v pôvodnom editore sa hodnota pridávala ako atribut ku koreňovému 
+    elementu výsledneho XML súboru. Asi by bolo dobre to nejak zahrnúť do 
+    definície <checkbox> elementu s tým, že to nemusí byt nutne ku koreňovému 
+    ako atribut ale i ako samostatný element. NUTNÁ DOHODA.
+    -->
+  <xs:complexType name="checkboxsType">
+    <xs:sequence>
+      <xs:element name="checkbox" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="label" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <!--
+    fileType typ pre <file> element. Specialný druh vstupu. Textový vstup 
+    s názvom súboru. Obsahuje informaciu či sa dá dynamicky násobiť alebo 
+    je len jeden.
+    -->
+  <xs:complexType name="fileType">
+    <xs:sequence>
+      <xs:element name="multiple" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <!--
+    morfologyType typ pre <morfology> element. Špecialny typ vstupu. 
+  -->
+  <xs:complexType name="morfologyType">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="morffor" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+</xs:schema>
