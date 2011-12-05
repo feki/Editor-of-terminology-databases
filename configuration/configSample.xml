@@ -18,7 +18,7 @@
     </input>
     
     <input label="obor">
-      <select name="domain" multiple="true">
+      <select name="domain" multiple="true" extensible="false">
         <options>
           <option value="kres" label="kresba-grafika"/>
           <option value="grdes" label="grafický design"/>
@@ -52,7 +52,7 @@
     </input>
     
     <input label="styl. přiznak">
-      <select name="styl" multiple="false">
+      <select name="styl" multiple="false" extensible="false">
         <options>
           <option value="prof" label="odborný termín"/>
           <option value="knizni" label="standard, knižní"/>
