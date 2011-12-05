@@ -53,16 +53,16 @@
     -->
   <xs:complexType name="inputType">
     <xs:sequence>
-      <xs:element name="label" type="xs:string"/>
       <xs:choice>
         <xs:element name="select" type="selectType"/>
         <xs:element name="text" type="textType"/>
-        <xs:element name="textareas" type="textareasType"/>
+        <xs:element name="textarea" type="textareaType"/>
         <xs:element name="checkboxs" type="checkboxsType"/>
         <xs:element name="file" type="fileType"/>
         <xs:element name="morfology" type="morfologyType"/>
       </xs:choice>
     </xs:sequence>
+    <xs:attribute name="label" type="xs:string"/>
   </xs:complexType>
   
   <!--
@@ -71,23 +71,21 @@
     -->
   <xs:complexType name="selectType">
     <xs:sequence>
-      <xs:element name="name" type="xs:string"/>
       <xs:element name="options">
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="option">
+            <xs:element name="option" maxOccurs="unbounded">
               <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="label" type="xs:string"/>
-                  <xs:element name="value" type="xs:string"/>
-                </xs:sequence>
+                <xs:attribute name="label" type="xs:string"/>
+                <xs:attribute name="value" type="xs:string"/>
               </xs:complexType>
             </xs:element>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="multiple" type="xs:boolean"/>
     </xs:sequence>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="multiple" type="xs:boolean"/>
   </xs:complexType>
   
   <!--
@@ -106,10 +104,8 @@
           <xs:sequence>
             <xs:element name="textField" minOccurs="1" maxOccurs="unbounded">
               <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="label" type="xs:string" minOccurs="1" maxOccurs="1"/>
-                  <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"/>
-                </xs:sequence>
+                <xs:attribute name="label" type="xs:string"/>
+                <xs:attribute name="name" type="xs:string"/>
               </xs:complexType>
             </xs:element>
           </xs:sequence>
@@ -117,10 +113,8 @@
       </xs:element>
       <xs:element name="textField" minOccurs="1" maxOccurs="1">
         <xs:complexType>
-          <xs:sequence>
-            <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="multiple" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
-          </xs:sequence>
+          <xs:attribute name="name" type="xs:string"/>
+          <xs:attribute name="multiple" type="xs:boolean"/>
         </xs:complexType>
       </xs:element>
     </xs:choice>
@@ -130,8 +124,8 @@
     textareasType typ pre <textareas>. Typ pre viacriadkové vstupy. 
     Je asociovaný s HTML <textarea> elementom.
     -->
-  <xs:complexType name="textareasType">
-    
+  <xs:complexType name="textareaType">
+    <xs:attribute name="name" type="xs:string"/>
   </xs:complexType>
   
   <!--
@@ -147,10 +141,8 @@
     <xs:sequence>
       <xs:element name="checkbox" maxOccurs="unbounded">
         <xs:complexType>
-          <xs:sequence>
-            <xs:element name="label" type="xs:string"/>
-            <xs:element name="name" type="xs:string"/>
-          </xs:sequence>
+          <xs:attribute name="label" type="xs:string"/>
+          <xs:attribute name="name" type="xs:string"/>
         </xs:complexType>
       </xs:element>
     </xs:sequence>
@@ -162,19 +154,15 @@
     je len jeden.
     -->
   <xs:complexType name="fileType">
-    <xs:sequence>
-      <xs:element name="multiple" type="xs:boolean"/>
-    </xs:sequence>
+    <xs:attribute name="multiple" type="xs:boolean"/>
   </xs:complexType>
   
   <!--
     morfologyType typ pre <morfology> element. Špecialny typ vstupu. 
   -->
   <xs:complexType name="morfologyType">
-    <xs:sequence>
-      <xs:element name="name" type="xs:string"/>
-      <xs:element name="morffor" type="xs:string"/>
-    </xs:sequence>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="morffor" type="xs:string"/>
   </xs:complexType>
   
 </xs:schema>
