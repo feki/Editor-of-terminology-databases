@@ -16,7 +16,7 @@ end
 
 def print_usage()
   $stderr.puts "It validates xml file against xsd schema file\n"
-  $stderr.puts "Usage: #{$0} xml_file.xml schema_file.xsd\n"
+  $stderr.puts "Usage: $ ruby #{$0.gsub(/ /, "\\ ")} xml_file.xml schema_file.xsd\n"
 end
 
 def validate(xml, xsd)

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+  <database>
+    <name>tea</name>
+    <url_base>https://deb.fi.muni.cz:8016/tea</url_base>
+    <url_base_s>https://deb.fi.muni.cz:8016/</url_base_s>
+  </database>
+
+  <content>
+
+    <input label=""><!-- prazdny label pre skupinu checkboxov -->
+      <checkboxes>
+        <checkbox label="předfinální" name="predfinal" asAttr="root"/>
+        <checkbox label="finální" name="final" asAttr="root"/>
+      </checkboxes>
+    </input>
+
+    <input label="obor">
+      <select name="obor" multiple="true" extensible="false">
+        <option value="agro" label="agronomie"/>
+      </select>
+    </input>
+
+    <input label="heslo">
+      <text>
+        <textFields>
+          <textField label="česky" name="word_cz"/>
+          <textField label="anglicky" name="word_en"/>
+        </textFields>
+      </text>
+    </input>
+    
+    <input label="varianty">
+      <text>
+        <textField name="var" multiple="true"/>
+      </text>
+    </input>
+    
+    <input label="styl. příznak">
+      <select name="styl" multiple="false" extensible="false">
+        <option label="odborný termín" value="prof"/>
+        <option label="standart, knižní" value="knizni"/>
+        <option label="slang" value="slang"/>
+        <option label="zastaralé" value="zast"/>
+        <option label="sporné" value="spor"/>
+      </select>
+    </input>
+    
+    <input label="definice cz">
+      <textarea name="definice_cz"/>
+    </input>
+    
+    <input label="definice en">
+      <textarea name="definice_en"/>
+    </input>
+    
+    <input label="příklady">
+      <text>
+        <textField name="example" multiple="true"/>
+      </text>
+    </input>
+    
+    <input label="nadpojem">
+      <text>
+        <textField name="hyper" multiple="true"/>
+      </text>
+    </input>
+    
+    <input label="podpojem">
+      <text>
+        <textField name="hypo" multiple="true"/>
+      </text>
+    </input>
+    
+    <input label="soubory">
+      <file multiple="true"/>
+    </input>
+
+  </content>
+
+</configuration>

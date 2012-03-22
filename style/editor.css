@@ -1,1 +1,145 @@
 @CHARSET "UTF-8";
+
+body {
+}
+
+fieldset legend {
+	font-weight: bold;
+	margin: 0 10px;
+	padding: 1px 8px;
+	border: 1px solid gray;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.checkbox {
+	cursor: pointer;
+}
+
+select {
+	cursor: pointer;
+}
+
+#editor_content {
+	overflow: hidden;
+}
+
+.editor, .entry_list {
+	width: 900px;
+    margin: auto;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+div {
+	display: block;
+}
+
+div.input {
+	margin-top: 10px;
+	float: left;
+	clear: left;
+	border-style: solid;
+	border-width: 1px;
+	border-color: gray;
+	padding: 5px 10px 3px 5px;
+	border-right-style: none;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-bottomleft: 5px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 5px;
+	border-bottom-color: transparent;
+}
+
+div.buttons {
+	margin-top: 10px;
+	float: left;
+	clear: left;
+	border-style: solid;
+	border-width: 1px;
+	border-color: gray;
+	padding: 5px 10px 3px 5px;
+	border-top-style: none;
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	width: 880px;
+}
+
+div.input > label {
+	margin-bottom: 10px;
+	margin-left: 3px;
+	font-weight: bolder;
+}
+
+div.input > div label {
+	width: 125px;
+	text-align: right;
+	border-style: none;
+	float: left;
+	clear: left;
+	margin-top: 5px;
+}
+
+div.input > div input, textarea, select {
+	float: left;
+	width: 500px;
+	clear: right;
+	display: block;
+	margin-left: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+div.input > div.text_el > div {
+    float: left;
+    clear: left;
+}
+
+div.input > div.file_el > div {
+    float: left;
+    clear: left;
+}
+
+select {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border-style: groove;
+}
+
+label {
+	width: 100px;
+	text-align: right;
+}
+
+fieldset {
+	border-radius: 10px;
+	display: block;
+	border: 1px solid gray;
+}
+
+.hide {
+	display: none;
+}
+
+img {
+    margin-top: 5px;
+	width: 24px;
+	height: 24px;
+    border-style: hidden;
+}
+
+.button {
+	border-style: none;
+/*	width: 24px;
+	height: 24px;
+*/
+}
